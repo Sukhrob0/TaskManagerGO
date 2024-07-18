@@ -1,16 +1,21 @@
 package main
 
-import       "github.com/gin-gonic/gin" 
-      
+import (
+	
+	"github.com/gin-gonic/gin"
+)
 
 
 func main() {
+
 	router := gin.Default()
-	router.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
+	router.LoadHTMLGlob("bace/bace.html")
+	router.GET("/", hendlerINdex)
 	router.Run(":8080") 
+}
+
+func hendlerINdex (c *gin.Context) {
+	c.HTML(200, "bace.html", nil)
+	
 }
 
