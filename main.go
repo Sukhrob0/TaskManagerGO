@@ -1,18 +1,16 @@
 package main
 
-import (
-	"fmt"
-	"net/http"
-)
+import       "github.com/gin-gonic/gin" 
+      
+
 
 func main() {
-
-	n := func(w http.ResponseWriter, r *http.Request) {
-		fmt.Println("мой первый сервер")
-	}
-
-	http.ListenAndServe(":5050", nil)
-
-	http.HandleFunc("/start", n)
-
+	router := gin.Default()
+	router.GET("/ping", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"message": "pong",
+		})
+	})
+	router.Run(":8080") 
 }
+
